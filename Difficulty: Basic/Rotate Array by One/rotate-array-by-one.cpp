@@ -13,7 +13,7 @@ class Solution {
     void rotate(vector<int> &arr) {
         int n=arr.size();
         
-        for(int i=0;i<n-1;i++){
+        for(int i=0;i<n;i++){
             swap(arr[i],arr[n-1]);
         }
     }
