@@ -11,10 +11,9 @@ using namespace std;
 class Solution {
   public:
     void rotate(vector<int> &arr) {
-        int n=arr.size();
-        
-        for(int i=0;i<n;i++){
-            swap(arr[i],arr[n-1]);
+        int j=0;
+        for(int i=1;i<arr.size();i++){
+            swap(arr[i],arr[j]);
         }
     }
 };
