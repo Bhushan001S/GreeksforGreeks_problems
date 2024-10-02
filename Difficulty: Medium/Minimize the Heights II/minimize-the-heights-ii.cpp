@@ -12,21 +12,24 @@ class Solution {
   public:
     int getMinDiff(vector<int> &arr, int k) {
         int n=arr.size();
-        if(n==1) return 0; //base case
+        if(n==1) return 0;
         
         sort(arr.begin(),arr.end());
-        int res=arr[n-1]-arr[0];
-        int low=arr[0]+k;
-        int high=arr[n-1]-k;
         
-        for(int i=1;i<n;i++){
-          int mini=min(low,arr[i]-k);
-          int maxi=max(arr[i-1]+k,high);
-          if(mini<0) continue;
-          
-          res=min(res,maxi-mini);
+        int result=arr[n-1]-arr[0];
+        
+        int smallest= arr[0]+k;
+        int largest= arr[n-1]-k;
+        
+        for(int i=0;i<n-1;i++){
+            int minHeight= min(smallest,arr[i+1]-k);
+            int maxHeight= max(largest,arr[i]+k);
+            
+            if(minHeight<0) continue;
+            
+            result= min(result,maxHeight-minHeight);
         }
-        return res;
+        return result;
     }
 };
 
