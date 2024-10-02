@@ -9,23 +9,27 @@ using namespace std;
 class Solution {
   public:
     int minJumps(vector<int>& arr) {
-        int n = arr.size();
-       int far = 0;
-       int curr = 0;
-       int jump = 0;
-
-   
-       for(int i=0;i<n-1;i++){        
-           far = max(far,arr[i]+i);
-           if(i == curr){
-               curr = far;
-               jump++;
-           }
-       }
-       if(curr>= n-1){
-           return jump;
-       }
-       return -1;
+        int n=arr.size();
+        if(n<=1) return 0;
+        
+        if(arr[0]==0) return -1;
+        
+        int jumps=0;
+        int currentE=0;
+        int far=0;
+        
+        for(int i=0;i<n-1;i++){
+            far=max(far,i+arr[i]);
+            
+            if(i==currentE){
+                jumps++;
+                currentE=far;
+                
+                if(currentE>n-1) break;
+            }
+        }
+        
+        return currentE>= n-1 ? jumps:-1;
     }
 };
 
