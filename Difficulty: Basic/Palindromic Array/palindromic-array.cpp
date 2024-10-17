@@ -10,28 +10,26 @@ using namespace std;
 
 class Solution {
   public:
-    bool isPali(int x){
-        vector<int>digit;
-        
-        while(x>0){
-            digit.push_back(x%10);
-            x/=10;
-        }
-        
-        vector<int>check=digit;
-        reverse(digit.begin(),digit.end());
-        
-        return check==digit;
-    }
+  bool solve(int n){
+      
+      if(n<10) return true;
+      string val=to_string(n);
+      int i=0,j=val.size()-1;
+      while(i<j){
+          if(val[i]!=val[j]) return false;
+          i++;
+          j--;
+      }
+      return true;
+  }
     bool PalinArray(vector<int> &arr) {
         
         for(auto it:arr){
-            if(isPali(it)){
-                continue;
-            }else return 0;
+            if(solve(it)) continue;
+            else return false;
         }
         
-        return 1;
+        return true;
     }
 };
 
