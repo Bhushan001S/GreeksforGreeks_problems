@@ -85,16 +85,25 @@ class Solution {
   public:
     // Function to remove a loop in the linked list.
     void removeLoop(Node* head) {
-        Node* temp=head;
-        unordered_map<Node*,bool>mp;
         
-        while(temp){
-            if(mp[temp->next]) {
-                temp->next=NULL;
-                break;
+        
+        Node* prev = NULL;
+        Node* curr = head;
+        
+        unordered_map<Node*,int> mpp;
+
+        while(curr != NULL)
+        {
+            if(mpp.find(curr) != mpp.end())
+            {
+                prev->next = NULL;
+                return ;
             }
-            mp[temp]=1;
-            temp=temp->next;
+            
+            mpp[curr] = 1;
+            
+            prev = curr;
+            curr = curr->next;
         }
     }
 };
@@ -145,6 +154,7 @@ int main() {
             cout << "false\n";
         else
             cout << "true\n";
+        cout << "~" << endl;
     }
     return 0;
 }
